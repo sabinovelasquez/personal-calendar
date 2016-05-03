@@ -1,0 +1,7 @@
+app/polyfills/**/*.js
+app/vendor/**/*.js
+app/bundle.js
+app/core/auth/django_auth.js
+app/core/plugins/**/*.js
+app/core/directives/hotspot.js
+node_modules/**/*.js

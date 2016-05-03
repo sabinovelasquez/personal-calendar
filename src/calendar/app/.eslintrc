@@ -1,0 +1,9 @@
+{
+    "extends": "airbnb/base",
+    "globals": {
+      "angular": 1,
+      "$": 1,
+      "_": 1,
+    },
+    "id-length": [3, {"min": 1, "max": 10, "properties": "never", "exceptions": ["x","$","_"]}]
+}
