@@ -1,24 +1,32 @@
 export default ngModule => {
-  ngModule.service('BookAPIService', function BookAPIService($firebaseObject, $q) {
+  ngModule.service('BookAPIService', function BookAPIService($firebaseObject) {
+    const Firebase = require('firebase');
+    const __ = require('underscore');
+    this.bookedDays = {};
     return {
       getBooked: () => {
         const ref = new Firebase(`https://602calendar.firebaseio.com/booked/`);
         const booked = $firebaseObject(ref);
-        const defer = $q.defer();
         booked.$loaded().then( (data) => {
-          // console.log("loaded record:", obj);
-          // angular.forEach(obj, function(value, key) {
-          //   console.log(key, value);
-          // });
-          defer.resolve(data);
-          this.booked = data;
-          return data;
+          this.bookedDays = data;
+          this.empty = Object.keys(this.bookedDays).length;
         });
       },
+      bookedDay: (day) => {
+        const days = [];
+        angular.forEach(this.bookedDays, (value) => {
+          days.push(Object.keys(value));
+        });
+        const flat = __.flatten(days);
+        return __.contains(flat, day.toString());
+      },
       putBook: (day, month) => {
-        const ref = new Firebase(`${month}https://602calendar.firebaseio.com/booked/${month}`);
-        const fb = $firebaseObject(ref);
-        ref.push({day:day}); //push
+        const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);
+        ref.set({event: 'test'});
+      },
+      delBook: (day, month) => {
+        const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);
+        ref.remove();
       },
     };
   });

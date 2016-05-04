@@ -9,16 +9,30 @@
     .num{
       font-size: 1.4em;
       line-height: 40px;
-      min-height: 40px;
+      overflow: hidden;
+      width: 40px;
+      height: 40px;
+      margin: auto;
+      cursor: pointer;
       color: $dark-grey;
-      max-width: 40px;
-      margin:auto;
+      -webkit-border-radius: 50%;
+         -moz-border-radius: 50%;
+              border-radius: 50%;
       &.today{
         color: white;
-        -webkit-border-radius: 50%;
-           -moz-border-radius: 50%;
-                border-radius: 50%;
         background: $red;
+      }
+      &.booked{
+        color: white;
+        background: $dark-grey;
+      }
+      &.sabino{
+        background: $dark-grey;
+      }
+      span{
+        float: left;
+        width: 100%;
+        height: 100%;
       }
     }
   }

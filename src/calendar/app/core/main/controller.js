@@ -11,6 +11,7 @@ export default ngModule => {
     this.dotwt = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     this.getToday = date.getDay();
     this.today =  this.dotwt[ date.getDay() - 1 ];
-    this.booked = BookAPIService.getBooked();
+    BookAPIService
+      .getBooked();
   });
 };

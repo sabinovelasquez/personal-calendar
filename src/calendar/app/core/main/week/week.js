@@ -14,9 +14,6 @@ export default ngModule => {
         this.month = date.getMonth();
         this.dotw = angular.fromJson(this.weekly);
         this.today = date.getDay();
-        this.book = (day) => {
-          console.log(day);
-        };
         this.BookAPIService = BookAPIService;
       },
     };
