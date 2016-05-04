@@ -3,7 +3,7 @@ require('./vendor')();
 const ngModule = angular.module('app', [
   'duScroll',
   'ngAnimate',
-  'ngParallax',
+  'firebase',
   'ngResource',
   'ngSanitize',
   'ngTouch',

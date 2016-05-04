@@ -12,7 +12,8 @@ module.exports = () => {
   require('angular-ui-router');
   require('angular-ui-bootstrap');
   require('ngtouch');
-  require('ng-parallax');
+  require('firebase');
+  require('angularfire');
   require('font-awesome-webpack');
 
   // polyfills

@@ -1,18 +1,15 @@
 export default ngModule => {
-  ngModule.controller('MainCtrl', function MainCtrl(PhotoAPIService) {
+  ngModule.controller('MainCtrl', function MainCtrl() {
     this.cases = [];
     const Calendar = require('calendar').Calendar;
-    const d = new Date();
-    const n = d.getMonth();
-    const y = d.getFullYear('Y');
-
+    const date = new Date();
+    const month = date.getMonth();
+    const year = date.getFullYear('Y');
     const cal = new Calendar(1);
-    const weeks = cal.monthDays(y, n);
+    const weeks = cal.monthDays(year, month);
     this.weeks = weeks;
-    PhotoAPIService
-      .allPhotos()
-      .then(response => {
-        this.cases = response.data.feed.entry;
-      });
+    this.dotwt = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    this.getToday = date.getDay();
+    this.today =  this.dotwt[ date.getDay() - 1 ];
   });
 };

@@ -1,2 +1,4 @@
-.week(ng-repeat='day in weekly' )
-  .day {{day}}
+.week(ng-repeat='day in weekly.dotw track by $index' )
+  .day
+    .num(ng-class='{"today": day==weekly.today+1}')
+      span(ng-show='day!=0', ng-click='weekly.BookAPIService.putBook(day, weekly.month)') {{day}}

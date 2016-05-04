@@ -1,5 +1,11 @@
+header
+  .info.col-xs-4
+    h2.today-day.text-center {{main.today}}
+    h3.today-num.text-center {{main.getToday+1}}
+hr
 .container
-  h2.text-center Calendar Project
-  .row(ng-repeat='week in main.weeks' )
+  .week-head
+    .head(ng-repeat='dayt in main.dotwt track by $index' )
+      h4 {{dayt}}
+  #week(ng-repeat='week in main.weeks' )
     single-week(weekly='week')
-  

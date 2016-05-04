@@ -1,7 +1,7 @@
 export default ngModule => {
   require('./week.scss');
 
-  ngModule.directive('singleWeek', function singleWeek() {
+  ngModule.directive('singleWeek', function singleWeek(BookAPIService) {
     return {
       template: require('./week.jade'),
       scope: {},
@@ -10,8 +10,14 @@ export default ngModule => {
       },
       controllerAs: 'weekly',
       controller: function weekCtrl() {
-        // this.currentW = this.week;
-        // console.log(this.currentW);
+        const date = new Date();
+        this.month = date.getMonth();
+        this.dotw = angular.fromJson(this.weekly);
+        this.today = date.getDay();
+        this.book = (day) => {
+          console.log(day);
+        };
+        this.BookAPIService = BookAPIService;
       },
     };
   });
