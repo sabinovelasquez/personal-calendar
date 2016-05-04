@@ -53,6 +53,28 @@ header{
 hr{
   width: 100%;
 }
+.sabi{
+  color: lighten(black, 25);
+}
+.sabi-bg{
+  color: white!important;
+  background: lighten(black, 25);
+}
+.xime{
+  color: $green;
+}
+.reni{
+  color: $purple;
+}
+.people{
+  h4{
+    line-height: 40px;
+    color: white;
+    i{
+      font-size: 20px;
+    }
+  }
+}
 .head{
   line-height: 50px;
   float: left;
