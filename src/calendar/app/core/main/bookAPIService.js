@@ -1,11 +1,19 @@
 export default ngModule => {
-  ngModule.service('BookAPIService', ($firebaseObject) => {
-    const service = {
+  ngModule.service('BookAPIService', function BookAPIService($firebaseObject, $q) {
+    return {
       getBooked: () => {
         const ref = new Firebase(`https://602calendar.firebaseio.com/booked/`);
-        const syncObject = $firebaseObject(ref);
-        return syncObject;
-        
+        const booked = $firebaseObject(ref);
+        const defer = $q.defer();
+        booked.$loaded().then( (data) => {
+          // console.log("loaded record:", obj);
+          // angular.forEach(obj, function(value, key) {
+          //   console.log(key, value);
+          // });
+          defer.resolve(data);
+          this.booked = data;
+          return data;
+        });
       },
       putBook: (day, month) => {
         const ref = new Firebase(`${month}https://602calendar.firebaseio.com/booked/${month}`);
@@ -13,6 +21,5 @@ export default ngModule => {
         ref.push({day:day}); //push
       },
     };
-    return service;
   });
 };

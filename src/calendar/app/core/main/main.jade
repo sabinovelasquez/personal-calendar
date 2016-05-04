@@ -4,6 +4,7 @@ header
     h3.today-num.text-center {{main.getToday+1}}
 hr
 .container
+  .booked booked: {{main.booked}}
   .week-head
     .head(ng-repeat='dayt in main.dotwt track by $index' )
       h4 {{dayt}}
