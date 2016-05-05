@@ -56,9 +56,17 @@ hr{
 .sabi{
   color: lighten(black, 25);
 }
-.sabi-bg{
+.sabino-bg{
   color: white!important;
   background: lighten(black, 25);
+}
+.xime-bg{
+  color: white!important;
+  background: $green;
+}
+.reni-bg{
+  color: white!important;
+  background: $purple;
 }
 .xime{
   color: $green;

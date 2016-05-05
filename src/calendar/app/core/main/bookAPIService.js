@@ -31,6 +31,10 @@ export default ngModule => {
         const event = this.bookedDays[`${month}`][`${day}`].event;
         if (event) {return event;}
       },
+      getUserEvent: (month, day) => {
+        const userev = this.bookedDays[`${month}`][`${day}`].user;
+        if (userev) {return userev;}
+      },
       putBook: (day, month, text) => {
         const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);
         ref.set({event: text, user: this.user});

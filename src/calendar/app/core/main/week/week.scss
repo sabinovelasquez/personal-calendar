@@ -1,7 +1,7 @@
 @import '../../css/functions';
 @import '../../css/colors';
 
-#week{
+.month{
   .day{
     float: left;
     width: 14.28%;
@@ -24,9 +24,6 @@
       }
       &.booked{
         color: white;
-        background: $dark-grey;
-      }
-      &.sabino{
         background: $dark-grey;
       }
       span{

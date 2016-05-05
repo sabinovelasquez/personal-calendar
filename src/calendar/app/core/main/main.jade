@@ -26,5 +26,5 @@ hr
   .week-head
     .head(ng-repeat='dayt in main.dotwt track by $index')
       h4 {{dayt}}
-  #week(ng-repeat='week in main.weeks')
+  .month(ng-repeat='week in main.weeks')
     single-week(weekly='week')

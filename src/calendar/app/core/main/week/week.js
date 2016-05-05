@@ -15,15 +15,16 @@ export default ngModule => {
         this.dotw = angular.fromJson(this.weekly);
         this.today = date.getDay();
         this.BookAPIService = BookAPIService;
-        this.openModal = (day, month) => {
+        this.openModal = (day, month, booked) => {
           $uibModal.open({
             animation: true,
             template: require('../user-modal/user-modal.jade'),
             size: 'lg',
             controllerAs: 'modal',
-            controller: function ModalCtrl($uibModalInstance, BookAPIService) {
+            controller: function ModalCtrl($uibModalInstance) {
               this.day = day;
               this.month = month;
+              this.booked = booked;
               this.text = '';
               this.BookAPIService = BookAPIService;
               this.close = () => $uibModalInstance.dismiss();
