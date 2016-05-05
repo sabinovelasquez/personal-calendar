@@ -31,13 +31,17 @@ export default ngModule => {
         const event = this.bookedDays[`${month}`][`${day}`].event;
         if (event) {return event;}
       },
-      getUserEvent: (month, day) => {
+      getEventTime: (month, day) => {
+        const time = this.bookedDays[`${month}`][`${day}`].time;
+        if (time) {return time;}
+      },
+      getEventUser: (month, day) => {
         const userev = this.bookedDays[`${month}`][`${day}`].user;
         if (userev) {return userev;}
       },
-      putBook: (day, month, text) => {
+      putBook: (day, month, text, time) => {
         const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);
-        ref.set({event: text, user: this.user});
+        ref.set({event: text, user: this.user, time: time});
       },
       delBook: (day, month) => {
         const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);

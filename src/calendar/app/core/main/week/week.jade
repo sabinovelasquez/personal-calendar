@@ -1,4 +1,4 @@
-.week(ng-repeat='day in weekly.dotw track by $index' )
+.week(ng-repeat='day in weekly.dotw track by $index')
   .day
     .date(ng-if='!weekly.BookAPIService.bookedDay(day)')
       .num(ng-class='{"today": day==weekly.today+1}')
@@ -6,6 +6,6 @@
         span(ng-show='day!=0 && weekly.BookAPIService.bookedDay(day)', ng-click='weekly.openModal(day, weekly.month, weekly.BookAPIService.bookedDay(day))') {{day}}
 
     .date(ng-if='weekly.BookAPIService.bookedDay(day)')
-      .num(ng-class='{"today": day==weekly.today+1}', class='{{weekly.BookAPIService.getUserEvent(weekly.month, day)}}-bg')
+      .num(ng-class='{"today": day==weekly.today+1}', class='{{weekly.BookAPIService.getEventUser(weekly.month, day)}}-bg')
         span(ng-show='day!=0 && !weekly.BookAPIService.bookedDay(day)', ng-click='weekly.openModal(day, weekly.month, weekly.BookAPIService.bookedDay(day))') {{day}}
         span(ng-show='day!=0 && weekly.BookAPIService.bookedDay(day)', ng-click='weekly.openModal(day, weekly.month, weekly.BookAPIService.bookedDay(day))') {{day}}
