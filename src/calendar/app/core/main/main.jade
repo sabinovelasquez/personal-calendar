@@ -2,19 +2,25 @@ header
   .info.col-xs-4
     h2.today-day.text-center {{main.today}}
     h3.today-num.text-center {{main.getToday+1}}
-  .people.col-xs-8
+  .col-xs-2.user
+    h1
+      span(ng-show='main.BookAPIService.getUser()===""')
+        | Who?
+      span(ng-show='main.BookAPIService.getUser()!==""')
+        | {{main.BookAPIService.getUser()}}
+  .col-xs-6.people
     h4.text-right
       | Sabino   
-      i.fa.fa-toggle-off.sabi(ng-if='main.BookAPIService.getUser()!=="sabi"', ng-click='main.BookAPIService.changeUser("sabi")')
-      i.fa.fa-toggle-on.sabi(ng-if='main.BookAPIService.getUser()=="sabi"')
+      i.fa.fa-toggle-off.sabi(ng-if='main.BookAPIService.getUser()!=="sabino"', ng-click='main.BookAPIService.changeUser("sabino")')
+      i.fa.fa-toggle-on.sabi(ng-if='main.BookAPIService.getUser()==="sabino"')
     h4.text-right
       | Xime   
       i.fa.fa-toggle-off.xime(ng-if='main.BookAPIService.getUser()!=="xime"', ng-click='main.BookAPIService.changeUser("xime")')
-      i.fa.fa-toggle-on.xime(ng-if='main.BookAPIService.getUser()=="xime"')
+      i.fa.fa-toggle-on.xime(ng-if='main.BookAPIService.getUser()==="xime"')
     h4.text-right
       | Reni   
       i.fa.fa-toggle-off.reni(ng-if='main.BookAPIService.getUser()!=="reni"', ng-click='main.BookAPIService.changeUser("reni")')
-      i.fa.fa-toggle-on.reni(ng-if='main.BookAPIService.getUser()=="reni"')
+      i.fa.fa-toggle-on.reni(ng-if='main.BookAPIService.getUser()==="reni"')
 hr
 .container
   .week-head

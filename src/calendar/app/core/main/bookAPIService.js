@@ -3,7 +3,7 @@ export default ngModule => {
     const Firebase = require('firebase');
     const __ = require('underscore');
     this.bookedDays = {};
-    this.user = 'sabi';
+    this.user = '';
     return {
       getBooked: () => {
         const ref = new Firebase(`https://602calendar.firebaseio.com/booked/`);
