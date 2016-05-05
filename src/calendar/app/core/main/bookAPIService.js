@@ -3,6 +3,7 @@ export default ngModule => {
     const Firebase = require('firebase');
     const __ = require('underscore');
     this.bookedDays = {};
+    this.event = {};
     this.user = '';
     return {
       getBooked: () => {
@@ -10,7 +11,6 @@ export default ngModule => {
         const booked = $firebaseObject(ref);
         booked.$loaded().then( (data) => {
           this.bookedDays = data;
-          this.empty = Object.keys(this.bookedDays).length;
         });
       },
       changeUser: (name) => {
@@ -27,9 +27,13 @@ export default ngModule => {
         const flat = __.flatten(days);
         return __.contains(flat, day.toString());
       },
-      putBook: (day, month) => {
+      getEvent: (month, day) => {
+        const event = this.bookedDays[`${month}`][`${day}`].event;
+        if (event) {return event;}
+      },
+      putBook: (day, month, text) => {
         const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);
-        ref.set({event: 'test', user: this.user});
+        ref.set({event: text, user: this.user});
       },
       delBook: (day, month) => {
         const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);

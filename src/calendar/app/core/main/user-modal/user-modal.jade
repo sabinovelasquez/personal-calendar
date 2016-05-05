@@ -2,3 +2,10 @@
   a.close(ng-click='modal.close()')
     i.fa.fa-close
 .modal-body
+  .event event: {{modal.BookAPIService.getEvent(modal.month, modal.day)}}
+  .h2 day: {{modal.day}}
+  .h2 month: {{modal.month}}
+  .h3 user: {{modal.BookAPIService.getUser()}}
+  input.form-control(ng-model='modal.text', placeholder='what\'s the occasion')
+  a.btn.btn-default(ng-click='modal.BookAPIService.putBook(modal.day, modal.month, modal.text)')
+    | send

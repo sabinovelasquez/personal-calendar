@@ -4,5 +4,5 @@
       //- span(ng-show='day!=0 && !weekly.BookAPIService.bookedDay(day)', ng-click='weekly.BookAPIService.putBook(day, weekly.month)') {{day}}
       //- span(ng-show='day!=0 && weekly.BookAPIService.bookedDay(day)', ng-click='weekly.BookAPIService.delBook(day, weekly.month)') {{day}}
 
-      span(ng-show='day!=0 && !weekly.BookAPIService.bookedDay(day)', ng-click='weekly.openModal()') {{day}}
-      span(ng-show='day!=0 && weekly.BookAPIService.bookedDay(day)', ng-click='weekly.openModal()') {{day}}
+      span(ng-show='day!=0 && !weekly.BookAPIService.bookedDay(day)', ng-click='weekly.openModal(day, weekly.month)') {{day}}
+      span(ng-show='day!=0 && weekly.BookAPIService.bookedDay(day)', ng-click='weekly.openModal(day, weekly.month)') {{day}}
