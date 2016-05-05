@@ -19,8 +19,8 @@
          -moz-border-radius: 50%;
               border-radius: 50%;
       &.today{
-        color: white;
-        background: $red;
+        border: 2px solid $red;
+        line-height: 36px;
       }
       &.booked{
         color: white;

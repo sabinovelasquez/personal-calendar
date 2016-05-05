@@ -1,7 +1,7 @@
 export default ngModule => {
   require('./week.scss');
 
-  ngModule.directive('singleWeek', function singleWeek(BookAPIService) {
+  ngModule.directive('singleWeek', function singleWeek($uibModal, BookAPIService) {
     return {
       template: require('./week.jade'),
       scope: {},
@@ -15,6 +15,18 @@ export default ngModule => {
         this.dotw = angular.fromJson(this.weekly);
         this.today = date.getDay();
         this.BookAPIService = BookAPIService;
+        
+        this.openModal = () => {
+          const modal = $uibModal.open({
+            animation: true,
+            template: require('./user-modal/user-modal.jade'),
+            size: 'lg',
+            controllerAs: 'modal',
+            controller: function ModalCtrl($uibModalInstance) {
+              this.close = () => $uibModalInstance.dismiss();
+            },
+          });
+        };
       },
     };
   });
