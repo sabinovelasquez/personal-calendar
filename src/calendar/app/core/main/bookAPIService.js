@@ -3,6 +3,7 @@ export default ngModule => {
     const Firebase = require('firebase');
     const __ = require('underscore');
     this.bookedDays = {};
+    this.user = 'sabi';
     return {
       getBooked: () => {
         const ref = new Firebase(`https://602calendar.firebaseio.com/booked/`);
@@ -11,6 +12,12 @@ export default ngModule => {
           this.bookedDays = data;
           this.empty = Object.keys(this.bookedDays).length;
         });
+      },
+      changeUser: (name) => {
+        this.user = name;
+      },
+      getUser: () => {
+        return this.user;
       },
       bookedDay: (day) => {
         const days = [];
@@ -22,7 +29,7 @@ export default ngModule => {
       },
       putBook: (day, month) => {
         const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);
-        ref.set({event: 'test'});
+        ref.set({event: 'test', user: this.user});
       },
       delBook: (day, month) => {
         const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);

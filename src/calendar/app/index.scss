@@ -68,10 +68,12 @@ hr{
 }
 .people{
   h4{
+    font-weight: 300;
     line-height: 40px;
     color: white;
     i{
       font-size: 20px;
+      cursor: pointer;
     }
   }
 }

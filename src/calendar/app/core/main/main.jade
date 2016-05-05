@@ -4,17 +4,17 @@ header
     h3.today-num.text-center {{main.getToday+1}}
   .people.col-xs-8
     h4.text-right
-      i.fa.fa-circle.sabi
-      |   Sabino   
-      i.fa.fa-toggle-off
+      | Sabino   
+      i.fa.fa-toggle-off.sabi(ng-if='main.BookAPIService.getUser()!=="sabi"', ng-click='main.BookAPIService.changeUser("sabi")')
+      i.fa.fa-toggle-on.sabi(ng-if='main.BookAPIService.getUser()=="sabi"')
     h4.text-right
-      i.fa.fa-circle.xime
-      |   Xime   
-      i.fa.fa-toggle-off
+      | Xime   
+      i.fa.fa-toggle-off.xime(ng-if='main.BookAPIService.getUser()!=="xime"', ng-click='main.BookAPIService.changeUser("xime")')
+      i.fa.fa-toggle-on.xime(ng-if='main.BookAPIService.getUser()=="xime"')
     h4.text-right
-      i.fa.fa-circle.reni
-      |   Reni   
-      i.fa.fa-toggle-off
+      | Reni   
+      i.fa.fa-toggle-off.reni(ng-if='main.BookAPIService.getUser()!=="reni"', ng-click='main.BookAPIService.changeUser("reni")')
+      i.fa.fa-toggle-on.reni(ng-if='main.BookAPIService.getUser()=="reni"')
 hr
 .container
   .week-head
