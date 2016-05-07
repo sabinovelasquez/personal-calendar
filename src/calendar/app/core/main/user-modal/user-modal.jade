@@ -25,20 +25,14 @@
         i.fa.fa-meh-o
       | Select your name first!
 .modal-footer
-  .icon.red(ng-if='modal.booked', ng-click='modal.BookAPIService.delBook(modal.day, modal.month); modal.close()')
+  .icon.red(ng-if='modal.booked && modal.confirm===false', ng-click='modal.confirm=true')
     i.fa.fa-trash
-
-  .icon(ng-if='!modal.booked && modal.BookAPIService.getUser()', ng-click='modal.BookAPIService.putBook(modal.day, modal.month, modal.text, modal.time); modal.close()', class='{{modal.BookAPIService.getUser()}}-bg')
+  .confirm(ng-if='modal.confirm===true')
+    .icon.red(ng-click='modal.BookAPIService.delBook(modal.day, modal.month); modal.close()')
+      i.fa.fa-trash
+    span.conf
+      i.fa.fa-hand-o-left
+      |   whoa! are you sure?   
+      
+  .icon.center-block(ng-if='!modal.booked && modal.BookAPIService.getUser()', ng-click='modal.BookAPIService.putBook(modal.day, modal.month, modal.text, modal.time); modal.close()', class='{{modal.BookAPIService.getUser()}}-bg')
     i.fa.fa-send
-
-  //- .event-info(ng-if='modal.booked')
-  //-   .event event: {{modal.BookAPIService.getEvent(modal.month, modal.day)}}
-  //- .h2 day: {{modal.day}}
-  //- .h2 month: {{modal.month}}
-  //- .h3 user: {{modal.BookAPIService.getUser()}}
-  //- input.form-control(ng-model='modal.text', placeholder='what\'s the occasion')
-  //- .login(ng-if='!modal.BookAPIService.getUser()')
-  //-   | Who are you?
-  //- .login(ng-if='modal.BookAPIService.getUser()') 
-  //-   a(ng-click='modal.BookAPIService.putBook(modal.day, modal.month, modal.text)')
-  //-     i.fa.fa-send
