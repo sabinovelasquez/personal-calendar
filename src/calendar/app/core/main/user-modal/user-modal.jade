@@ -32,7 +32,7 @@
       i.fa.fa-trash
     span.conf
       i.fa.fa-hand-o-left
-      |   whoa! are you sure?   
+      |   BRIAN DON'T! are you sure?   
       
   .icon.center-block(ng-if='!modal.booked && modal.BookAPIService.getUser()', ng-click='modal.BookAPIService.putBook(modal.day, modal.month, modal.text, modal.time); modal.close()', class='{{modal.BookAPIService.getUser()}}-bg')
     i.fa.fa-send

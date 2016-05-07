@@ -1,5 +1,5 @@
 .week(ng-repeat='day in weekly.dotw track by $index')
-  .day
+  .day(ng-class='{"past": weekly.checkDate(day)}')
     .date(ng-if='!weekly.BookAPIService.bookedDay(day)')
       .num(ng-class='{"today": day==weekly.today+1}')
         span(ng-show='day!=0 && !weekly.BookAPIService.bookedDay(day)', ng-click='weekly.openModal(day, weekly.month, weekly.BookAPIService.bookedDay(day))') {{day}}

@@ -14,6 +14,9 @@ export default ngModule => {
         this.month = date.getMonth();
         this.dotw = angular.fromJson(this.weekly);
         this.today = date.getDay();
+        this.checkDate = (day) => {
+          if(this.today>=day){ return true; }
+        };
         this.BookAPIService = BookAPIService;
         this.openModal = (day, month, booked) => {
           $uibModal.open({
