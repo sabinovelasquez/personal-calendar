@@ -2,6 +2,7 @@ header
   .info.col-xs-4
     h2.today-day.text-center {{main.today}}
     h3.today-num.text-center {{main.getToday+1}}
+    h4.today-month.text-center {{main.moty[main.month]}}
   .col-xs-2.user
     h1
       span(ng-show='main.BookAPIService.getUser()===""')
@@ -28,3 +29,8 @@ hr
       h4 {{dayt}}
   .month(ng-repeat='week in main.weeks')
     single-week(weekly='week')
+
+  //- a.btn.btn-default(ng-click = 'main.prevMonth()')
+  //-   | Prev Month
+  //- a.btn.btn-default(ng-click = 'main.nextMonth()')
+  //-   | Next Month
