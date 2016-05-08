@@ -22,9 +22,10 @@ export default ngModule => {
     this.user = BookAPIService.user;
     this.BookAPIService = BookAPIService;
     this.weeks = this.getWeeks(this.year, this.month);
-    this.dotwt = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    this.getToday = date.getDay();
-    this.today =  this.dotwt[ date.getDay() - 1 ];
+    this.dotwt = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    this.dotwtf = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    this.getToday = date.getDate();
+    this.today =  this.dotwt[ date.getDay() ];
     BookAPIService
       .getBooked();
   });
