@@ -1,5 +1,5 @@
 export default ngModule => {
-  ngModule.controller('MainCtrl', function MainCtrl(BookAPIService) {
+  ngModule.controller('MainCtrl', function MainCtrl(BookAPIService, WeatherAPIService, $sce) {
     const Calendar = require('calendar').Calendar;
     const date = new Date();
     const cal = new Calendar(1);
@@ -26,6 +26,14 @@ export default ngModule => {
     this.dotwtf = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     this.getToday = date.getDate();
     this.today =  this.dotwt[ date.getDay() ];
+    WeatherAPIService
+      .getWeather()
+      .then(response => {
+        const icon = response.data.current.condition.icon;
+        this.weatherIcon = $sce.trustAsResourceUrl(icon);
+        this.weatherIconText = response.data.current.condition.text;
+        this.weatherTemp = response.data.current.temp_c;
+      });
     BookAPIService
       .getBooked();
   });

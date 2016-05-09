@@ -1,5 +1,7 @@
 header
   .info.col-xs-4
+    .text.weather {{main.weatherTemp}}º
+    img.weather(ng-src='{{main.weatherIcon}}')
     h2.today-day.text-center {{main.today}}
     h3.today-num.text-center {{main.getToday}}
     h4.today-month.text-center {{main.moty[main.month]}}

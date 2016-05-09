@@ -34,6 +34,23 @@ header{
   float: left;
   width: 100%;
   background: lighten($tur,20);
+  img.weather{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+  }
+  .text{
+    &.weather{
+      line-height: 30px;
+      position: absolute;
+      z-index: 1;
+      right: 25px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+    }
+  }
   .info{
     color: white;
     background: $tur;
