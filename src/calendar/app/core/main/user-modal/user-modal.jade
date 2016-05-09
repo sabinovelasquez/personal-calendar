@@ -1,9 +1,15 @@
 .modal-header
+  .weather(ng-show='{{modal.checkWeather(modal.BookAPIService.forecast[modal.numday].date)}}')
+    span.max Max: {{modal.BookAPIService.forecast[modal.numday].day.maxtemp_c}}ºC
+    span.min Min: {{modal.BookAPIService.forecast[modal.numday].day.mintemp_c}}ºC
+    img.icon(ng-src='http:{{modal.BookAPIService.forecast[modal.numday].day.condition.icon}}')
+  .weather(ng-show='{{!modal.checkWeather(modal.BookAPIService.forecast[modal.numday].date)}}')
+    span.max IDK?
   a.close(ng-click='modal.close()')
     i.fa.fa-close
 .modal-body
   .event.text-center(ng-if='modal.booked', class='{{modal.BookAPIService.getEventUser(modal.month, modal.day)}}-bg')
-    .day {{modal.day}} / {{modal.month}}
+    .day {{modal.day}} / {{modal.month+1}}
     span {{modal.BookAPIService.getEventTime(modal.month, modal.day)}}
     .event-info(ng-show='modal.BookAPIService.getEvent(modal.month, modal.day)')
       {{modal.BookAPIService.getEvent(modal.month, modal.day)}}
@@ -11,7 +17,7 @@
       | No info :c
     small {{modal.BookAPIService.getEventUser(modal.month, modal.day)}}
   .new-event.text-center(ng-if='!modal.booked')
-    .day {{modal.day}} / {{modal.month}}
+    .day {{modal.day}} / {{modal.month+1}}
     form(ng-if='modal.BookAPIService.getUser()')
       .icon
         i.fa.fa-birthday-cake

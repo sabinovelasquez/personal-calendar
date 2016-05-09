@@ -1,6 +1,20 @@
 @import '../../css/functions';
 @import '../../css/colors';
 
+.modal-header{
+  padding: 5px 15px;
+  .weather{
+    float: left;
+    span.max,
+    span.min{
+      margin: 0 8px;
+      color: darken($light-grey, 20);
+    }
+    img.icon{
+      width: 40px;
+    }
+  }
+}
 .modal-body{
   padding: 0;
   .event{

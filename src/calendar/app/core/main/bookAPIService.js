@@ -5,6 +5,7 @@ export default ngModule => {
     this.bookedDays = {};
     this.event = {};
     this.user = '';
+    this.forecast = [];
     return {
       getBooked: () => {
         const ref = new Firebase(`https://602calendar.firebaseio.com/booked/`);

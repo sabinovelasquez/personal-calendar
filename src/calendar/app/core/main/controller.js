@@ -16,7 +16,7 @@ export default ngModule => {
       this.currentMonthNum--;
       this.weeks = this.getWeeks(this.year, this.month - this.currentMonthNum);
     };
-
+    this.forecast = [];
     this.year = date.getFullYear('Y');
     this.month = date.getMonth();
     this.user = BookAPIService.user;
@@ -29,6 +29,7 @@ export default ngModule => {
     WeatherAPIService
       .getWeather()
       .then(response => {
+        BookAPIService.forecast = response.data.forecast.forecastday;
         const icon = response.data.current.condition.icon;
         this.weatherIcon = $sce.trustAsResourceUrl(icon);
         this.weatherIconText = response.data.current.condition.text;

@@ -4,7 +4,7 @@ export default ngModule => {
       getWeather: () => {
         return $http({
           method: 'get',
-          url: `http://api.apixu.com/v1/forecast.json?key=6a9b5cfdfb6a4b7aa2e154423160905&q=Santiago`,
+          url: `http://api.apixu.com/v1/forecast.json?key=6a9b5cfdfb6a4b7aa2e154423160905&q=Santiago&days=7`,
         });
       },
     };

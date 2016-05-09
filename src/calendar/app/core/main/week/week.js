@@ -18,16 +18,26 @@ export default ngModule => {
           if (this.today > day) { return true; }
         };
         this.BookAPIService = BookAPIService;
-        this.openModal = (day, month, booked) => {
+        this.openModal = (day, month, booked, numday) => {
           $uibModal.open({
             animation: true,
             template: require('../user-modal/user-modal.jade'),
             size: 'lg',
             controllerAs: 'modal',
             controller: function ModalCtrl($uibModalInstance) {
+              this.numday = numday;
               this.day = day;
               this.month = month;
               this.booked = booked;
+              this.checkWeather = (dateinc) => {
+                const actualdate = new Date(dateinc);
+                const fromdate = new Date(2016, this.month, this.day);
+                const d1 = actualdate.getDate();
+                const d2 = fromdate.getDate();
+                if ( (d1 + 7) >= d2 && d2 >= d1 ) {
+                  return true;
+                }
+              };
               this.text = '';
               this.time = '';
               this.confirm = false;
