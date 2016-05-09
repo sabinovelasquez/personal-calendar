@@ -1,5 +1,5 @@
 export default ngModule => {
-  ngModule.service('BookAPIService', function BookAPIService($firebaseObject, $http) {
+  ngModule.service('BookAPIService', function BookAPIService($firebaseObject) {
     const Firebase = require('firebase');
     const __ = require('underscore');
     this.bookedDays = {};
