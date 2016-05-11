@@ -31,7 +31,7 @@ export default ngModule => {
               this.booked = booked;
               this.checkWeather = (dateinc) => {
                 const actualdate = new Date(dateinc);
-                const fromdate = new Date(2016, this.month, this.day-1);
+                const fromdate = new Date(2016, this.month, this.day - 1);
                 const d1 = actualdate.getDate();
                 const d2 = fromdate.getDate();
                 if ( (d1 + 8) >= (d2 + 1) && (d2 + 1) >= (d1 + 1) ) {
