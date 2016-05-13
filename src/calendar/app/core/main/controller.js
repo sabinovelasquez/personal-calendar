@@ -26,6 +26,7 @@ export default ngModule => {
     this.dotwtf = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     this.getToday = date.getDate();
     this.today =  this.dotwt[ date.getDay() ];
+    // const moment = require('moment');
     WeatherAPIService
       .getWeather()
       .then(response => {
