@@ -18,7 +18,7 @@ export default ngModule => {
           if (this.today > day) { return true; }
         };
         this.BookAPIService = BookAPIService;
-        this.openModal = (day, month, booked) => {
+        this.openModal = (day, month, booked, num) => {
           const moment = require('moment');
           $uibModal.open({
             animation: true,
@@ -26,12 +26,14 @@ export default ngModule => {
             size: 'lg',
             controllerAs: 'modal',
             controller: function ModalCtrl($uibModalInstance) {
+              this.num = num;
               this.day = day;
               this.month = month;
               this.booked = booked;
               this.checkWeather = () => {
-                const today = moment([2016, this.month, this.day]).format('YYYY-MM-DD');
-                console.log(today);
+                const today = moment().format('YYYY-MM-DD');
+                const selected = moment([2016, this.month, this.day]).format('YYYY-MM-DD');
+                return moment(selected).isBetween(today, moment(today).add(7, 'days')); 
               };
               this.text = '';
               this.time = '';

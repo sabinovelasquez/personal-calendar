@@ -29,6 +29,7 @@ export default ngModule => {
     WeatherAPIService
       .getWeather()
       .then(response => {
+        console.log(response.data.forecast.forecastday);
         BookAPIService.forecast = response.data.forecast.forecastday;
         const icon = response.data.current.condition.icon;
         this.weatherIcon = $sce.trustAsResourceUrl(icon);
