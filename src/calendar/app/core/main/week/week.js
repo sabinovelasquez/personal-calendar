@@ -30,22 +30,17 @@ export default ngModule => {
               this.day = day;
               this.month = month;
               this.booked = booked;
-
               this.checkWeather = () => {
                 const today = moment().format('YYYY-MM-DD');
                 const selected = moment([2016, this.month, (this.day)]).format('YYYY-MM-DD');
-                const inrange = moment(selected).isBetween(today, moment(today).add(8, 'days'), 'days', '[]');
-                const todayw = __.find( BookAPIService.forecast, function(findedday) { 
+                const inrange = moment(selected).isBetween(today, moment(today).add(7, 'days'), 'days', '[]');
+                const todayw = __.find( BookAPIService.forecast, function funddate(findedday) {
                   if (findedday.date === selected) {
                     return findedday.date;
                   }
                 });
-
                 if (inrange) {
-                  console.log(todayw);
-                  this.todayweather = todayw.day;
-                }else{
-                  this.todayweather = 'IDK';
+                  this.todayweather = todayw;
                 }
               };
               this.text = '';

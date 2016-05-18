@@ -1,8 +1,8 @@
 .modal-header
-  .weather
-    span.max(ng-show = 'modal.todayweather.maxtemp_c') Max: {{modal.todayweather.maxtemp_c}}ºC
-    span.min(ng-show = 'modal.todayweather.mintemp_c') Min: {{modal.todayweather.mintemp_c}}ºC
-    img.icon(ng-src='http:{{modal.todayweather.condition.icon}}', ng-show = 'modal.todayweather.condition.icon')
+  .weather(ng-show = 'modal.todayweather')
+    span.max Max: {{modal.todayweather.day.maxtemp_c}}ºC
+    span.min Min: {{modal.todayweather.day.mintemp_c}}ºC
+    img.icon(ng-src='http:{{modal.todayweather.day.condition.icon}}')
   a.close(ng-click='modal.close()')
     i.fa.fa-close
 .modal-body
