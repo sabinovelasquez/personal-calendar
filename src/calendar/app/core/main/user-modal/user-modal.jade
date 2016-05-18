@@ -1,11 +1,8 @@
 .modal-header
-  .weather(ng-show='{{modal.checkWeather()}}')
-    span.num {{modal.BookAPIService.forecast[modal.num-1].date}}
-    span.max Max: {{modal.BookAPIService.forecast[modal.num-1].day.maxtemp_c}}ºC
-    span.min Min: {{modal.BookAPIService.forecast[modal.num-1].day.mintemp_c}}ºC
-    img.icon(ng-src='http:{{modal.BookAPIService.forecast[modal.num-1].day.condition.icon}}')
-  .weather(ng-show='{{!modal.checkWeather()}}')
-    span.max IDK?
+  .weather
+    span.max(ng-show = 'modal.todayweather.maxtemp_c') Max: {{modal.todayweather.maxtemp_c}}ºC
+    span.min(ng-show = 'modal.todayweather.mintemp_c') Min: {{modal.todayweather.mintemp_c}}ºC
+    img.icon(ng-src='http:{{modal.todayweather.condition.icon}}', ng-show = 'modal.todayweather.condition.icon')
   a.close(ng-click='modal.close()')
     i.fa.fa-close
 .modal-body
