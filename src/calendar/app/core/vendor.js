@@ -14,7 +14,8 @@ module.exports = () => {
   require('ngtouch');
   require('angularfire');
   require('font-awesome-webpack');
-
+  require('moment');
+  require('angular-moment');
   // polyfills
   require('../polyfills/es2015_ArrayPrototype_find');
 };
