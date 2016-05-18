@@ -22,6 +22,10 @@ export default ngModule => {
       getUser: () => {
         return this.user;
       },
+      bookedDayPlace: (month, day) => {
+        const place = this.bookedDays[`${month}`][`${day}`].place;
+        if (place) {return place;}
+      },
       bookedDay: (day) => {
         const days = [];
         angular.forEach(this.bookedDays, (value) => {
@@ -42,9 +46,9 @@ export default ngModule => {
         const userev = this.bookedDays[`${month}`][`${day}`].user;
         if (userev) {return userev;}
       },
-      putBook: (day, month, text, time) => {
+      putBook: (day, month, text, time, place) => {
         const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);
-        ref.set({event: text, user: this.user, time: time});
+        ref.set({event: text, user: this.user, time: time, place: place});
       },
       delBook: (day, month) => {
         const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);

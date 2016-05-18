@@ -1,12 +1,15 @@
 .modal-header
   .weather(ng-show = 'modal.todayweather')
-    span.max Max: {{modal.todayweather.day.maxtemp_c}}ºC
-    span.min Min: {{modal.todayweather.day.mintemp_c}}ºC
     img.icon(ng-src='http:{{modal.todayweather.day.condition.icon}}')
+    span.max {{modal.todayweather.day.maxtemp_c}}ºC
+    span.min {{modal.todayweather.day.mintemp_c}}ºC
   a.close(ng-click='modal.close()')
     i.fa.fa-close
 .modal-body
   .event.text-center(ng-if='modal.booked', class='{{modal.BookAPIService.getEventUser(modal.month, modal.day)}}-bg')
+    .place
+      i.fa.fa-home(ng-if='modal.place==="in"')
+      i.fa.fa-cab(ng-if='modal.place==="out"')
     .day {{modal.day}} / {{modal.month+1}}
     span {{modal.BookAPIService.getEventTime(modal.month, modal.day)}}
     .event-info(ng-show='modal.BookAPIService.getEvent(modal.month, modal.day)')
@@ -20,6 +23,16 @@
       .icon
         i.fa.fa-birthday-cake
       input.form-control.text-center(ng-model='modal.text', placeholder='what\'s the occasion, {{modal.BookAPIService.getUser()}}?')
+      .col-xs-6.place
+        .check(ng-show='modal.place=="in"')
+          i.fa.fa-check
+        .icon(ng-click='modal.place="in"')
+          i.fa.fa-home(ng-class='{"op": modal.place=="out"}')
+      .col-xs-6.place
+        .check(ng-show='modal.place=="out"')
+          i.fa.fa-check
+        .icon(ng-click='modal.place="out"')
+          i.fa.fa-cab(ng-class='{"op": modal.place=="in"}')
       .icon
         i.fa.fa-clock-o
       select.form-control.text-center(ng-model='modal.time', ng-options='hour for hour in modal.hours', ng-init='modal.time = modal.time || modal.hours[0]')
@@ -38,5 +51,5 @@
       i.fa.fa-hand-o-left
       |   BRIAN DON'T! are you sure?   
       
-  .icon.center-block(ng-if='!modal.booked && modal.BookAPIService.getUser()', ng-click='modal.BookAPIService.putBook(modal.day, modal.month, modal.text, modal.time); modal.close()', class='{{modal.BookAPIService.getUser()}}-bg')
+  .icon.center-block(ng-if='!modal.booked && modal.BookAPIService.getUser()', ng-click='modal.BookAPIService.putBook(modal.day, modal.month, modal.text, modal.time, modal.place); modal.close()', class='{{modal.BookAPIService.getUser()}}-bg')
     i.fa.fa-send
