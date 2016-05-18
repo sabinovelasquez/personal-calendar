@@ -1,3 +1,5 @@
+// const moment = require('moment');
+
 export default ngModule => {
   ngModule.service('BookAPIService', function BookAPIService($firebaseObject) {
     const Firebase = require('firebase');
