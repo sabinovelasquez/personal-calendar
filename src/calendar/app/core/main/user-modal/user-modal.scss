@@ -20,6 +20,13 @@
   .event{
     min-height: 200px;
     color: white;
+    .place{
+      font-size: 22px;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      opacity: .6;
+    }
     .day{
       font-size: 2em;
       font-weight: 100;
@@ -42,7 +49,7 @@
     }
   }
   .new-event{
-    min-height: 280px;
+    min-height: 380px;
     color: white;
     background: $tur;
     .day{
@@ -55,9 +62,37 @@
       margin: auto;
       text-align: center;
     }
+    .check{
+      line-height: 28px;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      width: 30px;
+      height: 30px;
+      margin-left: 15px;
+      color: $green;
+      border: 2px solid $green;
+      -webkit-border-radius: 50%;
+         -moz-border-radius: 50%;
+              border-radius: 50%;
+      background: white;
+    }
+    .place{
+      .icon{
+        color: white;
+      }
+    }
     .icon{
       font-size: 40px;
       margin: 5px 0;
+      color: darken($tur, 20);
+      .op{
+        opacity: .5;
+      }
+      .fa-cab{
+        font-size: 30px;
+        line-height: 40px;
+      }
     }
   }
 }
