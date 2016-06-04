@@ -3,6 +3,13 @@ export default ngModule => {
     const Calendar = require('calendar').Calendar;
     const date = new Date();
     const cal = new Calendar(1);
+    const moment = require('moment');
+    const weekdayNames = Array.apply(null, Array(7)).map( (_, i) => {
+      return moment.weekdaysShort(i + 1);
+    });
+
+    this.dates = weekdayNames;
+    console.log('date:' + this.dates);
     this.moty = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     this.currentMonthNum = 0;
     this.getWeeks = (year, month) => {
@@ -23,7 +30,7 @@ export default ngModule => {
     this.BookAPIService = BookAPIService;
     this.weeks = this.getWeeks(this.year, this.month);
     this.dotwt = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    this.dotwtf = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    this.dotwtf = weekdayNames;
     this.getToday = date.getDate();
     this.today =  this.dotwt[ date.getDay() ];
     WeatherAPIService
