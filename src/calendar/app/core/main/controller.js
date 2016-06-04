@@ -4,12 +4,12 @@ export default ngModule => {
     const date = new Date();
     const cal = new Calendar(1);
     const moment = require('moment');
-    const weekdayNames = Array.apply(null, Array(7)).map( (_, i) => {
-      return moment.weekdaysShort(i + 1);
+    const weekdayNames = Array.apply(null, Array(7)).map( (__, iterate) => {
+      return moment.weekdaysShort(iterate + 1);
     });
 
     this.dates = weekdayNames;
-    console.log('date:' + this.dates);
+    // console.log('date:' + this.dates);
     this.moty = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     this.currentMonthNum = 0;
     this.getWeeks = (year, month) => {
