@@ -5,6 +5,9 @@ export default ngModule => {
     const weekdayNames = Array.apply(null, Array(7)).map( (__, iterate) => {
       return moment.weekdaysShort(iterate + 1);
     });
+    const monthDays = Array.apply(null, Array(31)).map( (__, iterate) => {
+      return iterate;
+    });
 
     this.dotw = weekdayNames;
     this.getToday = date.getDate();
@@ -12,8 +15,8 @@ export default ngModule => {
     this.moty = moment.monthsShort();
     this.month = date.getMonth();
     
-
-
+    // this.monthDays = Array(31);
+    console.log(monthDays);
     // console.log(this.month);
 
     // console.log('date:' + this.dates);
