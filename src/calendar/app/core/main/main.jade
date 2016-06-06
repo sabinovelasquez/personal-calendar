@@ -28,12 +28,13 @@ header
       i.fa.fa-toggle-off.reni(ng-if='main.BookAPIService.getUser()!=="reni"', ng-click='main.BookAPIService.changeUser("reni")')
       i.fa.fa-toggle-on.reni(ng-if='main.BookAPIService.getUser()==="reni"')
 hr
+  
 .container
   .week-head
-    .head(ng-repeat='dayt in main.dotwtf track by $index')
+    .head(ng-repeat='dayt in main.dotwt track by $index')
       h4 {{dayt}}
   .month(ng-repeat='week in main.weeks')
-    single-week(weekly='week')
+    //- single-week(weekly='week')
 
   //- a.btn.btn-default(ng-click = 'main.prevMonth()')
   //-   | Prev Month
