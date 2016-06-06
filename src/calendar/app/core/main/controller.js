@@ -6,18 +6,17 @@ export default ngModule => {
       return moment.weekdaysShort(iterate + 1);
     });
 
-    this.dotwt = weekdayNames;
+    this.dotw = weekdayNames;
     this.getToday = date.getDate();
-    this.today =  this.dotwt[ date.getDay() - 1 ];
+    this.today =  this.dotw[ date.getDay() - 1 ];
     this.moty = moment.monthsShort();
     this.month = date.getMonth();
     
-    
+
 
     // console.log(this.month);
 
     // console.log('date:' + this.dates);
-    // this.moty = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     // this.currentMonthNum = 0;
     // this.getWeeks = (year, month) => {
     //   return cal.monthDays(year, month);
