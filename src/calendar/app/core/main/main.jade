@@ -5,9 +5,9 @@ header
     .winfo(ng-show='main.weatherTemp')
       .text.weather {{main.weatherTemp}}º C
       img.weather(ng-src='http:{{main.weatherIcon}}')
-    h2.today-day.text-center {{main.today}}
-    h3.today-num.text-center {{main.getToday}}
-    h4.today-month.text-center {{main.moty[main.month]}}
+    h2.today-day.text-center {{main.todayName}}
+    h3.today-num.text-center {{main.DateService.todayNum}}
+    h4.today-month.text-center {{main.moty[main.DateService.currentMonthNum]}}
   .col-xs-2.user
     h1
       span(ng-show='main.BookAPIService.getUser()===""')
@@ -33,7 +33,8 @@ hr
   .week-head
     .head(ng-repeat='dayt in main.dotw track by $index')
       h4 {{dayt}}
-  .month(ng-repeat='week in main.weeks')
+  .dayofmonth(ng-repeat='day in main.daysArray track by $index')
+    single-day(day='day', month='day.currentMonthNum', year='day.currentyear')
     //- single-week(weekly='week')
 
   //- a.btn.btn-default(ng-click = 'main.prevMonth()')

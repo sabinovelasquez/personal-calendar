@@ -1,22 +1,29 @@
 export default ngModule => {
-  ngModule.controller('MainCtrl', function MainCtrl(BookAPIService, WeatherAPIService, $sce) {
-    const date = new Date();
+  ngModule.controller('MainCtrl', function MainCtrl(DateService, BookAPIService, WeatherAPIService, $sce) {
+    
+    this.DateService = DateService;
+
+    const __ = require('underscore');
     const moment = require('moment');
-    const weekdayNames = Array.apply(null, Array(7)).map( (__, iterate) => {
+    const Calendar = require('calendar').Calendar;
+    const cal = new Calendar(1);
+    const date = new Date();
+
+    const weekdayNames = Array.apply(null, Array(7)).map( (___, iterate) => {
       return moment.weekdaysShort(iterate + 1);
-    });
-    const monthDays = Array.apply(null, Array(31)).map( (__, iterate) => {
-      return iterate;
     });
 
     this.dotw = weekdayNames;
-    this.getToday = date.getDate();
-    this.today =  this.dotw[ date.getDay() - 1 ];
     this.moty = moment.monthsShort();
-    this.month = date.getMonth();
-    
+
+    this.todayName =  this.dotw[ date.getDay() - 1 ];
+
+    this.daysArray = __.flatten(cal.monthDays(this.DateService.currentYear, this.DateService.currentMonthNum));
+
+    console.log(this.daysArray);
+
+    // moment("2012-02", "YYYY-MM").daysInMonth() 
     // this.monthDays = Array(31);
-    console.log(monthDays);
     // console.log(this.month);
 
     // console.log('date:' + this.dates);
