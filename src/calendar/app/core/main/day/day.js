@@ -6,16 +6,18 @@ export default ngModule => {
       template: require('./day.jade'),
       scope: {},
       bindToController: {
-        day: '='
+        day: '=',
       },
       controllerAs: 'day',
       controller: function dayCtrl() {
         const moment = require('moment');
         this.DateService = DateService;
-        this.checkPastDate = (datecom) => {
-          return false;
+        this.isPastDate = () => {
+          return moment(`${this.DateService.activeYear}-${this.DateService.activeMonthNum}-${this.day}`).isBefore(`${this.DateService.currentYear}-${this.DateService.currentMonthNum}-${this.DateService.todayNum}`);
         };
-        
+        this.isToday = () => {
+          return moment(`${this.DateService.activeYear}-${this.DateService.activeMonthNum}-${this.day}`).isSame(`${this.DateService.currentYear}-${this.DateService.currentMonthNum}-${this.DateService.todayNum}`);
+        };
       },
     };
   });

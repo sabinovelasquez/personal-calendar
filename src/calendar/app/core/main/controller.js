@@ -15,12 +15,25 @@ export default ngModule => {
 
     this.dotw = weekdayNames;
     this.moty = moment.monthsShort();
-
     this.todayName =  this.dotw[ date.getDay() - 1 ];
 
-    this.daysArray = __.flatten(cal.monthDays(this.DateService.currentYear, this.DateService.currentMonthNum));
-
-    console.log(this.daysArray);
+    this.getArray = () => {
+      return __.flatten(cal.monthDays(this.DateService.activeYear, this.DateService.activeMonthNum));
+    };
+    this.daysArray = this.getArray();
+    this.nextMonth = () => {
+      if (this.DateService.activeMonthNum < 11) {
+        this.DateService.activeMonthNum++;
+        this.daysArray = this.getArray();
+      }
+    };
+    this.prevMonth = () => {
+      if (this.DateService.activeMonthNum > 0) {
+        this.DateService.activeMonthNum--;
+        this.daysArray = this.getArray();
+      }
+    };
+    // console.log(this.daysArray);
 
     // moment("2012-02", "YYYY-MM").daysInMonth() 
     // this.monthDays = Array(31);

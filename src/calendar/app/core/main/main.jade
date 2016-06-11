@@ -30,14 +30,21 @@ header
 hr
   
 .container
-  .week-head
+  .col-xs-4
+    a.prev(ng-click = 'main.prevMonth()')
+      i.fa.fa-chevron-left
+  .col-xs-4
+    h2.text-center.month
+      {{main.moty[main.DateService.activeMonthNum]}}
+  .col-xs-4
+    a.next(ng-click = 'main.nextMonth()')
+      i.fa.fa-chevron-right
+  .col-xs-12.week-head
     .head(ng-repeat='dayt in main.dotw track by $index')
       h4 {{dayt}}
   .dayofmonth(ng-repeat='day in main.daysArray track by $index')
-    single-day(day='day', month='day.currentMonthNum', year='day.currentyear')
+    single-day(day='day')
     //- single-week(weekly='week')
 
-  //- a.btn.btn-default(ng-click = 'main.prevMonth()')
-  //-   | Prev Month
-  //- a.btn.btn-default(ng-click = 'main.nextMonth()')
-  //-   | Next Month
+  
+    

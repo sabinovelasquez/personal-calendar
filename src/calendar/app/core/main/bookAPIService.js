@@ -35,6 +35,7 @@ export default ngModule => {
         return __.contains(flat, day.toString());
       },
       getEvent: (month, day) => {
+        console.log(this.bookedDays);
         const event = this.bookedDays[`${month}`][`${day}`].event;
         if (event) {return event;}
       },

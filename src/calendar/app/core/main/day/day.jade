@@ -1,4 +1,4 @@
-.day(ng-class='{"past": day.checkPastDate(day.day)}')
+.day(ng-class='{"past": day.isPastDate()}')
   .date
-    .num
+    .num(ng-class='{"today": day.isToday()}')
       span(ng-show='day.day!=0') {{day.day}}
