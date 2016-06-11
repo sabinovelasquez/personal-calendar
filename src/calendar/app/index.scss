@@ -143,20 +143,21 @@ h2.month{
   margin: 10px;
   cursor: pointer;
   text-align: center;
-  color: $dark-grey;
+  color: white;
   -webkit-border-radius: 50%;
      -moz-border-radius: 50%;
           border-radius: 50%;
+  background: darken($light-grey, 10);
+  &:hover,
+  &:focus{
+    color: white;
+  }
 }
 .prev{
   float: right;
-  color: white;
-  background: $tur;
 }
 .next{
   float: left;
-  color: white;
-  background: $tur;
 }
 .glyphicon{
   font-family: 'FontAwesome';
