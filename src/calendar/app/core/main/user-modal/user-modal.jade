@@ -10,7 +10,7 @@
     .place
       i.fa.fa-home(ng-if='modal.place==="in"')
       i.fa.fa-cab(ng-if='modal.place==="out"')
-    .day {{modal.day}} / {{modal.month+1}}
+    .day {{modal.day}} / {{modal.month+1}} / {{modal.year}}
     span {{modal.BookAPIService.getEventTime(modal.month, modal.day)}}
     .event-info(ng-show='modal.BookAPIService.getEvent(modal.month, modal.day)')
       {{modal.BookAPIService.getEvent(modal.month, modal.day)}}
@@ -18,7 +18,7 @@
       | No info :c
     small {{modal.BookAPIService.getEventUser(modal.month, modal.day)}}
   .new-event.text-center(ng-if='!modal.booked')
-    .day {{modal.day}} / {{modal.month+1}}
+    .day {{modal.day}} / {{modal.month+1}} / {{modal.year}}
     form(ng-if='modal.BookAPIService.getUser()')
       .icon
         i.fa.fa-birthday-cake
