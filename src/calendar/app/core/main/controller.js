@@ -21,15 +21,20 @@ export default ngModule => {
     this.nextMonth = () => {
       if (this.DateService.activeMonthNum < 11) {
         this.DateService.activeMonthNum++;
-        this.daysArray = this.getArray();
+        this.getMonthEvents();
       }
     };
     this.prevMonth = () => {
       if (this.DateService.activeMonthNum > 0) {
         this.DateService.activeMonthNum--;
-        this.daysArray = this.getArray();
+        this.getMonthEvents();
       }
     };
+    this.getMonthEvents = () => {
+      this.daysArray = this.getArray();
+      BookAPIService.getBooked(this.DateService.activeYear, this.DateService.activeMonthNum);
+    };
+    this.getMonthEvents();
     WeatherAPIService
       .getWeather()
       .then(response => {

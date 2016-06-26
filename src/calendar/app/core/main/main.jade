@@ -28,8 +28,7 @@ header
       i.fa.fa-toggle-off.reni(ng-if='main.BookAPIService.getUser()!=="reni"', ng-click='main.BookAPIService.changeUser("reni")')
       i.fa.fa-toggle-on.reni(ng-if='main.BookAPIService.getUser()==="reni"')
 hr
-  
-
+{{main.BookAPIService.bookedDays}}
 .col-xs-4
   a.prev(ng-click = 'main.prevMonth()')
     i.fa.fa-chevron-left

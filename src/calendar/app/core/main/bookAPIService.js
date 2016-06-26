@@ -1,17 +1,18 @@
 // const moment = require('moment');
 
 export default ngModule => {
-  ngModule.service('BookAPIService', function BookAPIService($firebaseObject) {
+  ngModule.service('BookAPIService', function BookAPIService($firebaseArray) {
     const Firebase = require('firebase');
-    const __ = require('underscore');
+    // const __ = require('underscore');
     this.bookedDays = {};
     this.event = {};
     this.user = '';
     this.forecast = [];
+
     return {
-      getBooked: () => {
-        const ref = new Firebase(`https://602calendar.firebaseio.com/booked/`);
-        const booked = $firebaseObject(ref);
+      getBooked: (year, month) => {
+        const ref = new Firebase(`https://602calendar.firebaseio.com/booked/${year}/${month}`);
+        const booked = $firebaseArray(ref);
         booked.$loaded().then( (data) => {
           this.bookedDays = data;
         });
@@ -27,12 +28,13 @@ export default ngModule => {
         if (place) {return place;}
       },
       bookedDay: (day) => {
-        const days = [];
+        this.checkDate = false;
         angular.forEach(this.bookedDays, (value) => {
-          days.push(Object.keys(value));
+          if (day.toString() === value.$id) {
+            this.checkDate = true;
+          }
         });
-        const flat = __.flatten(days);
-        return __.contains(flat, day.toString());
+        return this.checkDate;
       },
       getEvent: (month, day) => {
         const event = this.bookedDays[`${month}`][`${day}`].event;

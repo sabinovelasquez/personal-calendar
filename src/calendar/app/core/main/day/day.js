@@ -18,6 +18,9 @@ export default ngModule => {
         this.isToday = () => {
           return moment(`${this.DateService.activeYear}-${this.DateService.activeMonthNum}-${this.day}`).isSame(`${this.DateService.currentYear}-${this.DateService.currentMonthNum}-${this.DateService.todayNum}`);
         };
+        this.getDate = (day) => {
+          return BookAPIService.bookedDay(day);
+        };
         this.openDay = (day, month, year) => {
           const __ = require('underscore');
           $uibModal.open({
@@ -51,7 +54,6 @@ export default ngModule => {
               // }
               this.confirm = false;
               this.hours = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
-              this.BookAPIService = BookAPIService;
               this.checkWeather();
               this.close = () => $uibModalInstance.dismiss();
             },

@@ -1,4 +1,5 @@
 .day(ng-class='{"past": day.isPastDate()}')
   .date
+    .place(ng-if="day.getDate(day.day)")
     .num(ng-class='{"today": day.isToday()}', ng-click='day.openDay(day.day, day.DateService.activeMonthNum, day.DateService.activeYear)')
       span(ng-show='day.day!=0') {{day.day}}
