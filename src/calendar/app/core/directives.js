@@ -1,3 +1,3 @@
 export default ngModule => {
-  require('./main/week/week')(ngModule);
+  require('./main/day/day')(ngModule);
 };
