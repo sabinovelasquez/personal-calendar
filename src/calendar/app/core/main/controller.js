@@ -1,7 +1,7 @@
 export default ngModule => {
   ngModule.controller('MainCtrl', function MainCtrl(DateService, BookAPIService, WeatherAPIService, $sce) {
     this.DateService = DateService;
-
+    this.BookAPIService = BookAPIService;
     const __ = require('underscore');
     const moment = require('moment');
     const Calendar = require('calendar').Calendar;

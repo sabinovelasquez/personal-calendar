@@ -1,11 +1,9 @@
 // const moment = require('moment');
 
 export default ngModule => {
-  ngModule.service('BookAPIService', function BookAPIService($firebaseArray) {
+  ngModule.service('BookAPIService', function BookAPIService($firebaseArray, $firebaseObject, DateService) {
     const Firebase = require('firebase');
-    // const __ = require('underscore');
     this.bookedDays = {};
-    this.event = {};
     this.user = '';
     this.forecast = [];
 
@@ -23,10 +21,6 @@ export default ngModule => {
       getUser: () => {
         return this.user;
       },
-      bookedDayPlace: (month, day) => {
-        const place = this.bookedDays[`${month}`][`${day}`].place;
-        if (place) {return place;}
-      },
       bookedDay: (day) => {
         this.checkDate = false;
         angular.forEach(this.bookedDays, (value) => {
@@ -36,24 +30,17 @@ export default ngModule => {
         });
         return this.checkDate;
       },
-      getEvent: (month, day) => {
-        const event = this.bookedDays[`${month}`][`${day}`].event;
-        if (event) {return event;}
+      getEvent: (year, month, day) => {
+        const ref = new Firebase(`https://602calendar.firebaseio.com/booked/${year}/${month}/${day}`);
+        const booked = $firebaseObject(ref);
+        return booked;
       },
-      getEventTime: (month, day) => {
-        const time = this.bookedDays[`${month}`][`${day}`].time;
-        if (time) {return time;}
+      putBook: (book, day) => {
+        const ref = new Firebase(`https://602calendar.firebaseio.com/booked/${DateService.activeYear}/${DateService.activeMonthNum}/${day}`);
+        ref.set(book);
       },
-      getEventUser: (month, day) => {
-        const userev = this.bookedDays[`${month}`][`${day}`].user;
-        if (userev) {return userev;}
-      },
-      putBook: (day, month, text, time, place) => {
-        const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);
-        ref.set({event: text, user: this.user, time: time, place: place});
-      },
-      delBook: (day, month) => {
-        const ref = new Firebase(`${month}${day}https://602calendar.firebaseio.com/booked/${month}/${day}`);
+      delBook: (day) => {
+        const ref = new Firebase(`https://602calendar.firebaseio.com/booked/${DateService.activeYear}/${DateService.activeMonthNum}/${day}`);
         ref.remove();
       },
     };

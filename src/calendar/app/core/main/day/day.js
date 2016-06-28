@@ -29,9 +29,20 @@ export default ngModule => {
             size: 'lg',
             controllerAs: 'modal',
             controller: function ModalCtrl($uibModalInstance) {
+              this.BookAPIService = BookAPIService;
               this.day = day;
               this.month = month;
               this.year = year;
+              this.book = {};
+              this.book.user = this.BookAPIService.getUser();
+              this.event = BookAPIService.getEvent(this.year, this.month, this.day);
+              if (!this.book.place) {
+                this.book.place = 'in';
+              }else {
+                this.book.place = this.book.place;
+              }
+              this.confirm = false;
+              this.hours = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
               this.checkWeather = () => {
                 const today = moment().format('YYYY-MM-DD');
                 const selected = moment([this.year, this.month, this.day]).format('YYYY-MM-DD');
@@ -45,15 +56,6 @@ export default ngModule => {
                   this.todayweather = todayw;
                 }
               };
-              this.text = '';
-              this.time = '';
-              // if (!place) {
-              //   this.place = 'in';
-              // }else {
-              //   this.place = place;
-              // }
-              this.confirm = false;
-              this.hours = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
               this.checkWeather();
               this.close = () => $uibModalInstance.dismiss();
             },
