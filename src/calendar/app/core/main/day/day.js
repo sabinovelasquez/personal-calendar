@@ -11,17 +11,16 @@ export default ngModule => {
       controllerAs: 'day',
       controller: function dayCtrl() {
         const moment = require('moment');
-        this.DateService = DateService;
         this.isPastDate = () => {
-          return moment(`${this.DateService.activeYear}-${this.DateService.activeMonthNum}-${this.day}`).isBefore(`${this.DateService.currentYear}-${this.DateService.currentMonthNum}-${this.DateService.todayNum}`);
+          return moment(`${DateService.activeYear} ${DateService.activeMonthNum} ${this.day}`, 'YYYY MM DD').isBefore(moment(`${DateService.currentYear} ${DateService.currentMonthNum} ${DateService.todayNum}`, 'YYYY MM DD'));
         };
         this.isToday = () => {
-          return moment(`${this.DateService.activeYear}-${this.DateService.activeMonthNum}-${this.day}`).isSame(`${this.DateService.currentYear}-${this.DateService.currentMonthNum}-${this.DateService.todayNum}`);
+          return moment(`${DateService.activeYear} ${DateService.activeMonthNum} ${this.day}`, 'YYYY MM DD').isSame(moment(`${DateService.currentYear} ${DateService.currentMonthNum} ${DateService.todayNum}`, 'YYYY MM DD'));
         };
         this.getDate = (day) => {
           return BookAPIService.bookedDay(day);
         };
-        this.openDay = (day, month, year) => {
+        this.openDay = (day) => {
           const __ = require('underscore');
           $uibModal.open({
             animation: true,
@@ -31,8 +30,8 @@ export default ngModule => {
             controller: function ModalCtrl($uibModalInstance) {
               this.BookAPIService = BookAPIService;
               this.day = day;
-              this.month = month;
-              this.year = year;
+              this.month = DateService.activeMonthNum;
+              this.year = DateService.activeYear;
               this.book = {};
               this.book.user = this.BookAPIService.getUser();
               this.event = BookAPIService.getEvent(this.year, this.month, this.day);
@@ -44,9 +43,9 @@ export default ngModule => {
               this.confirm = false;
               this.hours = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
               this.checkWeather = () => {
-                const today = moment().format('YYYY-MM-DD');
+                const todayM = moment().format('YYYY-MM-DD');
                 const selected = moment([this.year, this.month, this.day]).format('YYYY-MM-DD');
-                const inrange = moment(selected).isBetween(today, moment(today).add(7, 'days'), 'days', '[]');
+                const inrange = moment(selected).isBetween(todayM, moment(todayM).add(7, 'days'), 'days', '[]');
                 const todayw = __.find( BookAPIService.forecast, function funddate(findedday) {
                   if (findedday.date === selected) {
                     return findedday.date;

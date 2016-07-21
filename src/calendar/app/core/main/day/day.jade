@@ -1,5 +1,5 @@
 .day(ng-class='{"past": day.isPastDate()}')
   .date
     .place(ng-if="day.getDate(day.day)" ng-cloack)
-    .num(ng-class='{"today": day.isToday()}', ng-click='day.openDay(day.day, day.DateService.activeMonthNum, day.DateService.activeYear)')
+    .num(ng-class='{"today": day.isToday()}', ng-click='day.openDay(day.day)')
       span(ng-show='day.day!=0') {{day.day}}
