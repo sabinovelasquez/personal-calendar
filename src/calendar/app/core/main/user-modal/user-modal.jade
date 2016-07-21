@@ -6,50 +6,53 @@
   a.close(ng-click='modal.close()')
     i.fa.fa-close
 .modal-body
-  .event.text-center(ng-if='modal.booked', class='{{modal.BookAPIService.getEventUser(modal.month, modal.day)}}-bg')
+  //- event info
+  .event.text-center(ng-if='modal.event.user', class='{{modal.event.user}}-bg')
     .place
-      i.fa.fa-home(ng-if='modal.place==="in"')
-      i.fa.fa-cab(ng-if='modal.place==="out"')
-    .day {{modal.day}} / {{modal.month+1}}
-    span {{modal.BookAPIService.getEventTime(modal.month, modal.day)}}
-    .event-info(ng-show='modal.BookAPIService.getEvent(modal.month, modal.day)')
-      {{modal.BookAPIService.getEvent(modal.month, modal.day)}}
-    .event-info(ng-hide='modal.BookAPIService.getEvent(modal.month, modal.day)')
+      i.fa.fa-home(ng-if='modal.event.place==="in"')
+      i.fa.fa-cab(ng-if='modal.event.place==="out"')
+    .day {{modal.day}} / {{modal.month+1}} / {{modal.year}}
+    span {{modal.event.time}}
+    .event-info(ng-show='modal.event.event')
+      {{modal.event.event}}
+    .event-info(ng-hide='modal.event.event')
       | No info :c
-    small {{modal.BookAPIService.getEventUser(modal.month, modal.day)}}
-  .new-event.text-center(ng-if='!modal.booked')
-    .day {{modal.day}} / {{modal.month+1}}
-    form(ng-if='modal.BookAPIService.getUser()')
+    small {{modal.event.user}}
+
+  //- new event
+  .new-event.text-center(ng-if='!modal.event.user')
+    .day {{modal.day}} / {{modal.month+1}} / {{modal.year}}
+    form(ng-if='modal.book.user')
       .icon
         i.fa.fa-birthday-cake
-      input.form-control.text-center(ng-model='modal.text', placeholder='what\'s the occasion, {{modal.BookAPIService.getUser()}}?')
+      input.form-control.text-center(ng-model='modal.book.event', placeholder='what\'s the occasion, {{modal.book.user}}?')
       .col-xs-6.place
-        .check(ng-show='modal.place=="in"')
+        .check(ng-show='modal.book.place=="in"')
           i.fa.fa-check
-        .icon(ng-click='modal.place="in"')
-          i.fa.fa-home(ng-class='{"op": modal.place=="out"}')
+        .icon(ng-click='modal.book.place="in"')
+          i.fa.fa-home(ng-class='{"op": modal.book.place=="out"}')
       .col-xs-6.place
-        .check(ng-show='modal.place=="out"')
+        .check(ng-show='modal.book.place=="out"')
           i.fa.fa-check
-        .icon(ng-click='modal.place="out"')
-          i.fa.fa-cab(ng-class='{"op": modal.place=="in"}')
+        .icon(ng-click='modal.book.place="out"')
+          i.fa.fa-cab(ng-class='{"op": modal.book.place=="in"}')
       .icon
         i.fa.fa-clock-o
-      select.form-control.text-center(ng-model='modal.time', ng-options='hour for hour in modal.hours', ng-init='modal.time = modal.time || modal.hours[0]')
-
-    .dunno(ng-if='!modal.BookAPIService.getUser()')
+      select.form-control.text-center(ng-model='modal.book.time', ng-options='hour for hour in modal.hours', ng-init='modal.book.time = modal.book.time || modal.hours[0]')
+    .dunno(ng-if='!modal.book.user')
       .icon
         i.fa.fa-meh-o
       | Select your name first!
+
 .modal-footer
-  .icon.red(ng-if='modal.booked && modal.confirm===false', ng-click='modal.confirm=true')
+  .icon.red(ng-if='modal.event.user && modal.confirm===false', ng-click='modal.confirm=true')
     i.fa.fa-trash
   .confirm(ng-if='modal.confirm===true')
-    .icon.red(ng-click='modal.BookAPIService.delBook(modal.day, modal.month); modal.close()')
+    .icon.red(ng-click='modal.BookAPIService.delBook(modal.day); modal.close()')
       i.fa.fa-trash
     span.conf
       i.fa.fa-hand-o-left
       |   BRIAN DON'T! are you sure?   
       
-  .icon.center-block(ng-if='!modal.booked && modal.BookAPIService.getUser()', ng-click='modal.BookAPIService.putBook(modal.day, modal.month, modal.text, modal.time, modal.place); modal.close()', class='{{modal.BookAPIService.getUser()}}-bg')
+  .icon.center-block(ng-if='!modal.event.user && modal.book.user', ng-click='modal.BookAPIService.putBook(modal.book, modal.day); modal.close()', class='{{modal.book.user}}-bg')
     i.fa.fa-send

@@ -5,9 +5,9 @@ header
     .winfo(ng-show='main.weatherTemp')
       .text.weather {{main.weatherTemp}}º C
       img.weather(ng-src='http:{{main.weatherIcon}}')
-    h2.today-day.text-center {{main.today}}
-    h3.today-num.text-center {{main.getToday}}
-    h4.today-month.text-center {{main.moty[main.month]}}
+    h2.today-day.text-center {{main.todayName}}
+    h3.today-num.text-center {{main.DateService.todayNum}}
+    h4.today-month.text-center {{main.moty[main.DateService.currentMonthNum]}}
   .col-xs-2.user
     h1
       span(ng-show='main.BookAPIService.getUser()===""')
@@ -28,14 +28,22 @@ header
       i.fa.fa-toggle-off.reni(ng-if='main.BookAPIService.getUser()!=="reni"', ng-click='main.BookAPIService.changeUser("reni")')
       i.fa.fa-toggle-on.reni(ng-if='main.BookAPIService.getUser()==="reni"')
 hr
+{{main.BookAPIService.bookedDays}}
+.col-xs-4
+  a.prev(ng-click = 'main.prevMonth()')
+    i.fa.fa-chevron-left
+.col-xs-4
+  h2.text-center.month
+    {{main.moty[main.DateService.activeMonthNum]}}
+.col-xs-4
+  a.next(ng-click = 'main.nextMonth()')
+    i.fa.fa-chevron-right
+.col-xs-12.week-head
+  .head(ng-repeat='dayt in main.dotw track by $index')
+    h4 {{dayt}}
 .container
-  .week-head
-    .head(ng-repeat='dayt in main.dotwtf track by $index')
-      h4 {{dayt}}
-  .month(ng-repeat='week in main.weeks')
-    single-week(weekly='week')
+  .dayofmonth(ng-repeat='day in main.daysArray track by $index')
+    single-day(day='day')
 
-  //- a.btn.btn-default(ng-click = 'main.prevMonth()')
-  //-   | Prev Month
-  //- a.btn.btn-default(ng-click = 'main.nextMonth()')
-  //-   | Next Month
+  
+    
